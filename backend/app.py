@@ -26,6 +26,9 @@ app.config.update(
     SEND_FILE_MAX_AGE_DEFAULT=0,                 # always serve fresh frontend files while developing
 )
 db.init_app(app)
+if os.environ.get("VERCEL"):
+       import seed
+       seed.seed()
 
 
 # ---------- plumbing ----------
@@ -202,5 +205,5 @@ def voice_parse():
     return jsonify(result)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and not os.environ.get("VERCEL"):
     app.run(debug=True)

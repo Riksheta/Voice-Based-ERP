@@ -2,9 +2,11 @@
 import sqlite3
 import os
 from werkzeug.security import generate_password_hash
+from db import DB_PATH, SCHEMA
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE, "..", "database", "erp.db")
+from db import DB_PATH, SCHEMA
 
 def seed_db():
     if not os.path.exists(DB_PATH):

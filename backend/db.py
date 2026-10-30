@@ -4,7 +4,11 @@ import sqlite3
 from flask import g
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.environ.get("ERP_DB", os.path.join(BASE, "..", "database", "erp.db"))
+
+if os.environ.get("VERCEL"):
+    DB_PATH = "/tmp/erp.db"
+else:
+    DB_PATH = os.environ.get("ERP_DB", os.path.join(BASE, "..", "database", "erp.db"))
 SCHEMA = os.path.join(BASE, "..", "database", "schema.sql")
 
 # Ensure the database directory exists automatically on startup
